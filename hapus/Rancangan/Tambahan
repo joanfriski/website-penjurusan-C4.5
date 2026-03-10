@@ -1,0 +1,30 @@
+Rekomendasi Tambahan
+
+Keamanan:
+
+Implementasikan sistem login dengan enkripsi password
+Batasi akses berdasarkan peran pengguna
+Simpan log aktivitas untuk audit
+
+
+Antarmuka Pengguna:
+
+Desain antarmuka yang sederhana dan intuitif
+Tampilkan visualisasi pohon keputusan secara interaktif
+Sediakan fitur ekspor laporan dalam format PDF/Excel
+
+
+Performa:
+
+Optimalisasi algoritma C4.5 untuk data dalam jumlah besar
+Implementasikan caching untuk mempercepat akses data
+
+
+Skalabilitas:
+
+Rancang sistem yang dapat menangani jumlah siswa yang bertambah setiap tahun
+Buat fitur backup dan restore data
+
+
+
+Dengan implementasi sistem ini, SMAN 1 Ciwaru diharapkan dapat melakukan proses penjurusan siswa secara lebih efisien, akurat, dan cepat, mengatasi masalah yang saat ini dihadapi dengan penggunaan Microsoft Excel.

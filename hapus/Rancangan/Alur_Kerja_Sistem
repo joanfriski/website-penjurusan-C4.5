@@ -1,0 +1,18 @@
+Alur Kerja Sistem
+
+Staff BK login ke sistem
+Input data siswa kelas 10 (nama, nomor induk, dll)
+Input nilai mata pelajaran untuk setiap siswa
+Input hasil test IQ
+Input minat siswa
+Sistem memproses data menggunakan algoritma C4.5:
+
+Menghitung entropy
+Menghitung gain
+Membentuk pohon keputusan
+Mengklasifikasikan siswa ke jurusan IPA, IPS, atau Gabungan
+
+
+Sistem menampilkan hasil penjurusan
+Staff BK dapat menyimpan atau mengubah hasil jika diperlukan
+Kepala Sekolah dapat melihat laporan hasil penjurusan

@@ -1,0 +1,83 @@
+C:\xampp\htdocs\sma_ciwaru\
+├── admin/
+│   ├── dashboard/
+│   │   └── index.php
+│   ├── siswa/
+│   │   ├── index.php
+│   │   ├── tambah.php
+│   │   ├── edit.php
+│   │   └── hapus.php
+│   ├── kelas/
+│   │   ├── index.php
+│   │   ├── tambah.php
+│   │   ├── edit.php
+│   │   └── hapus.php
+│   ├── nilai/
+│   │   ├── index.php
+│   │   ├── tambah.php
+│   │   ├── edit.php
+│   │   └── hapus.php
+│   ├── test_iq/
+│   │   ├── index.php
+│   │   ├── tambah.php
+│   │   ├── edit.php
+│   │   └── hapus.php
+│   ├── minat/
+│   │   ├── index.php
+│   │   ├── tambah.php
+│   │   ├── edit.php
+│   │   └── hapus.php
+│   ├── penjurusan/
+│   │   ├── index.php
+│   │   ├── proses.php
+│   │   ├── detail.php
+│   │   └── laporan.php
+│   ├── decision_tree/
+│   │   ├── index.php
+│   │   └── visualisasi.php
+│   |   |── c45_algorithm.php
+│   ├── laporan/
+│   │   ├── index.php
+│   │   ├── penjurusan.php
+│   │   ├── siswa.php
+│   │   └── cetak.php
+│   ├── pengaturan/
+│   │   ├── index.php
+│   │   ├── user.php
+│   │   └── sistem.php
+│   └── include/
+│       ├── header.php
+│       ├── footer.php
+│       ├── navbar.php
+│       └── sidebar.php
+├── kepsek/
+│   ├── dashboard/
+│   │   └── index.php
+│   ├── laporan/
+│   │   ├── index.php
+│   │   └── detail.php
+│   ├── profile/
+│   │   └── index.php
+│   └── include/
+│       ├── header.php
+│       ├── footer.php
+│       ├── navbar.php
+│       └── sidebar.php
+├── login/
+│   ├── login.php
+│   ├── proses_login.php
+│   └── proses_logout.php
+├── database/
+│   ├── config.php
+│   └── db_penjurusan.sql 
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── main.js
+│   └── img/
+│       └── logo.png
+├── includes/
+│   ├── functions.php
+│   └── helper.php
+└── index.php

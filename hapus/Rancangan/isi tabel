@@ -1,0 +1,129 @@
+-- Mengisi tabel users
+INSERT INTO users (username, password, nama_lengkap, role, email, no_telp) VALUES
+('budi_santoso', '$2y$10$abc123', 'Budi Santoso', 'staff_bk', 'budi.santoso@gmail.com', '081234567890'),
+('ani_wijaya', '$2y$10$def456', 'Ani Wijaya', 'staff_bk', 'ani.wijaya@gmail.com', '081234567891'),
+('dedi_kurniawan', '$2y$10$ghi789', 'Dedi Kurniawan', 'staff_bk', 'dedi.kurniawan@gmail.com', '081234567892'),
+('eka_purnama', '$2y$10$jkl012', 'Eka Purnama', 'staff_bk', 'eka.purnama@gmail.com', '081234567893'),
+('ferry_gunawan', '$2y$10$mno345', 'Ferry Gunawan', 'staff_bk', 'ferry.gunawan@gmail.com', '081234567894'),
+('gina_sari', '$2y$10$pqr678', 'Gina Sari', 'kepsek', 'gina.sari@gmail.com', '081234567895'),
+('hadi_susanto', '$2y$10$stu901', 'Hadi Susanto', 'kepsek', 'hadi.susanto@gmail.com', '081234567896'),
+('indah_permata', '$2y$10$vwx234', 'Indah Permata', 'staff_bk', 'indah.permata@gmail.com', '081234567897'),
+('joko_widodo', '$2y$10$yz5678', 'Joko Widodo', 'staff_bk', 'joko.widodo@gmail.com', '081234567898'),
+('kartika_dewi', '$2y$10$abc890', 'Kartika Dewi', 'staff_bk', 'kartika.dewi@gmail.com', '081234567899');
+
+-- Mengisi tabel kelas
+INSERT INTO kelas (nama_kelas, tahun_ajaran, wali_kelas) VALUES
+('X-1', '2023/2024', 'Sri Wahyuni'),
+('X-2', '2023/2024', 'Ahmad Dahlan'),
+('X-3', '2023/2024', 'Dewi Kartika'),
+('X-4', '2023/2024', 'Bambang Hermanto'),
+('X-5', '2023/2024', 'Fitri Handayani'),
+('XI-IPA-1', '2023/2024', 'Rina Fitriani'),
+('XI-IPA-2', '2023/2024', 'Hendra Gunawan'),
+('XI-IPS-1', '2023/2024', 'Tuti Winarti'),
+('XI-IPS-2', '2023/2024', 'Agus Setiawan'),
+('XII-IPA-1', '2023/2024', 'Yanti Susanti');
+
+-- Mengisi tabel siswa
+INSERT INTO siswa (nis, nisn, nama_lengkap, jenis_kelamin, tempat_lahir, tanggal_lahir, alamat, no_telp, kelas_id, status) VALUES
+('2023001', '0012345671', 'Ahmad Rizki', 'L', 'Jakarta', '2007-05-15', 'Jl. Merdeka No. 10, Jakarta', '081234567801', 1, 'aktif'),
+('2023002', '0012345672', 'Bunga Citra', 'P', 'Bandung', '2007-06-20', 'Jl. Kenanga No. 5, Bandung', '081234567802', 1, 'aktif'),
+('2023003', '0012345673', 'Candra Wijaya', 'L', 'Surabaya', '2007-07-25', 'Jl. Pahlawan No. 15, Surabaya', '081234567803', 2, 'aktif'),
+('2023004', '0012345674', 'Dina Fitriani', 'P', 'Yogyakarta', '2007-08-10', 'Jl. Malioboro No. 20, Yogyakarta', '081234567804', 2, 'aktif'),
+('2023005', '0012345675', 'Eko Prasetyo', 'L', 'Semarang', '2007-09-05', 'Jl. Diponegoro No. 25, Semarang', '081234567805', 3, 'aktif'),
+('2023006', '0012345676', 'Fitri Handayani', 'P', 'Solo', '2007-10-12', 'Jl. Slamet Riyadi No. 30, Solo', '081234567806', 3, 'aktif'),
+('2023007', '0012345677', 'Gilang Ramadhan', 'L', 'Malang', '2007-11-18', 'Jl. Tugu No. 35, Malang', '081234567807', 4, 'aktif'),
+('2023008', '0012345678', 'Hana Permata', 'P', 'Medan', '2007-12-24', 'Jl. Merdeka No. 40, Medan', '081234567808', 4, 'aktif'),
+('2023009', '0012345679', 'Irfan Hakim', 'L', 'Palembang', '2008-01-30', 'Jl. Sudirman No. 45, Palembang', '081234567809', 5, 'aktif'),
+('2023010', '0012345680', 'Jasmine Putri', 'P', 'Makassar', '2008-02-14', 'Jl. Veteran No. 50, Makassar', '081234567810', 5, 'aktif');
+
+-- Mengisi tabel mata_pelajaran
+INSERT INTO mata_pelajaran (kode, nama, kategori) VALUES
+('MTK01', 'Matematika', 'IPA'),
+('FIS01', 'Fisika', 'IPA'),
+('KIM01', 'Kimia', 'IPA'),
+('BIO01', 'Biologi', 'IPA'),
+('SEJ01', 'Sejarah', 'IPS'),
+('GEO01', 'Geografi', 'IPS'),
+('EKO01', 'Ekonomi', 'IPS'),
+('SOS01', 'Sosiologi', 'IPS'),
+('MTK02', 'Matematika Peminatan', 'IPA'),
+('EKO02', 'Ekonomi Lanjutan', 'IPS');
+
+-- Mengisi tabel nilai
+INSERT INTO nilai (siswa_id, mapel_id, nilai, tahun_ajaran) VALUES
+(1, 1, 85.50, '2023/2024'),
+(1, 2, 78.75, '2023/2024'),
+(1, 3, 82.25, '2023/2024'),
+(2, 1, 90.00, '2023/2024'),
+(2, 5, 88.50, '2023/2024'),
+(3, 7, 76.25, '2023/2024'),
+(4, 1, 89.75, '2023/2024'),
+(5, 4, 77.50, '2023/2024'),
+(6, 6, 81.25, '2023/2024'),
+(7, 8, 84.00, '2023/2024');
+
+-- Mengisi tabel test_iq
+INSERT INTO test_iq (siswa_id, skor, kategori, tanggal_test, keterangan) VALUES
+(1, 120, 'Tinggi', '2023-08-15', 'Hasil test menunjukkan kemampuan analitis yang baik'),
+(2, 115, 'Tinggi', '2023-08-15', 'Menunjukkan kemampuan pemecahan masalah yang baik'),
+(3, 105, 'Sedang', '2023-08-16', 'Memiliki kemampuan rata-rata dalam pemrosesan informasi'),
+(4, 125, 'Tinggi', '2023-08-16', 'Menunjukkan kemampuan logika yang sangat baik'),
+(5, 100, 'Sedang', '2023-08-17', 'Memiliki kemampuan yang seimbang dalam berbagai aspek'),
+(6, 110, 'Sedang', '2023-08-17', 'Memiliki kemampuan verbal yang baik'),
+(7, 95, 'Sedang', '2023-08-18', 'Cukup baik dalam pemecahan masalah praktis'),
+(8, 130, 'Tinggi', '2023-08-18', 'Menunjukkan kemampuan yang sangat baik dalam semua aspek'),
+(9, 90, 'Rendah', '2023-08-19', 'Memerlukan bimbingan dalam pemecahan masalah kompleks'),
+(10, 102, 'Sedang', '2023-08-19', 'Memiliki kemampuan rata-rata dengan kelebihan di aspek visual');
+
+-- Mengisi tabel minat_siswa
+INSERT INTO minat_siswa (siswa_id, minat) VALUES
+(1, 'IPA'),
+(2, 'IPA'),
+(3, 'IPS'),
+(4, 'IPA'),
+(5, 'IPA'),
+(6, 'IPS'),
+(7, 'IPS'),
+(8, 'IPA'),
+(9, 'IPS'),
+(10, 'IPA');
+
+-- Mengisi tabel penjurusan
+INSERT INTO penjurusan (siswa_id, jurusan, nilai_ipa, nilai_ips, skor_iq, minat, status_konfirmasi, tanggal_penjurusan, user_id, keterangan) VALUES
+(1, 'IPA', 82.17, 75.25, 120, 'IPA', 'diterima', '2023-12-10', 1, 'Cocok untuk jurusan IPA berdasarkan nilai dan minat'),
+(2, 'IPA', 90.00, 80.50, 115, 'IPA', 'diterima', '2023-12-10', 2, 'Sangat baik di bidang IPA'),
+(3, 'IPS', 70.25, 82.75, 105, 'IPS', 'diterima', '2023-12-11', 1, 'Lebih cocok di IPS berdasarkan minat dan nilai'),
+(4, 'IPA', 85.50, 77.25, 125, 'IPA', 'diterima', '2023-12-11', 3, 'Prestasi sangat baik di bidang IPA'),
+(5, 'IPA', 80.00, 75.00, 100, 'IPA', 'pending', '2023-12-12', 2, 'Perlu pertimbangan tambahan'),
+(6, 'IPS', 74.25, 83.50, 110, 'IPS', 'diterima', '2023-12-12', 4, 'Kemampuan dan minat sesuai dengan jurusan IPS'),
+(7, 'IPS', 72.00, 84.00, 95, 'IPS', 'diterima', '2023-12-13', 3, 'Sesuai dengan minat dan kemampuan'),
+(8, 'IPA', 86.75, 78.50, 130, 'IPA', 'diterima', '2023-12-13', 1, 'Sangat cocok untuk jurusan IPA'),
+(9, 'IPS', 65.50, 80.25, 90, 'IPS', 'pending', '2023-12-14', 5, 'Perlu bimbingan tambahan'),
+(10, 'Gabungan', 79.00, 77.00, 102, 'IPA', 'ditolak', '2023-12-14', 2, 'Perlu mengulang test dan konsultasi lebih lanjut');
+
+-- Mengisi tabel decision_tree
+INSERT INTO decision_tree (node_id, parent_id, atribut, nilai_atribut, is_leaf, keputusan, entropy, gain, level) VALUES
+('N1', NULL, 'Nilai_IPA', NULL, FALSE, NULL, 0.940000, 0.450000, 0),
+('N2', 'N1', 'Nilai_IPA', '>=80', FALSE, NULL, 0.650000, 0.350000, 1),
+('N3', 'N1', 'Nilai_IPA', '<80', FALSE, NULL, 0.750000, 0.320000, 1),
+('N4', 'N2', 'IQ', NULL, FALSE, NULL, 0.400000, 0.250000, 2),
+('N5', 'N2', 'IQ', 'Tinggi', TRUE, 'IPA', 0.000000, 0.000000, 3),
+('N6', 'N2', 'IQ', 'Sedang', FALSE, NULL, 0.500000, 0.500000, 3),
+('N7', 'N3', 'Minat', NULL, FALSE, NULL, 0.600000, 0.400000, 2),
+('N8', 'N3', 'Minat', 'IPA', FALSE, NULL, 0.300000, 0.200000, 3),
+('N9', 'N3', 'Minat', 'IPS', TRUE, 'IPS', 0.000000, 0.000000, 3),
+('N10', 'N6', 'Minat', 'IPA', TRUE, 'IPA', 0.000000, 0.000000, 4);
+
+-- Mengisi tabel log_aktivitas
+INSERT INTO log_aktivitas (user_id, aktivitas, keterangan, ip_address) VALUES
+(1, 'Login', 'Login sukses', '192.168.1.100'),
+(2, 'Input Nilai', 'Menambahkan nilai untuk siswa Bunga Citra', '192.168.1.105'),
+(3, 'Penjurusan', 'Melakukan penjurusan untuk kelas X-1', '192.168.1.110'),
+(4, 'Update Profil', 'Mengubah data kontak', '192.168.1.115'),
+(1, 'Input Test IQ', 'Menambahkan hasil test IQ untuk 5 siswa', '192.168.1.100'),
+(5, 'Logout', 'Logout dari sistem', '192.168.1.120'),
+(2, 'Cetak Laporan', 'Mencetak laporan penjurusan', '192.168.1.105'),
+(6, 'Approval', 'Menyetujui hasil penjurusan kelas X-2', '192.168.1.125'),
+(7, 'Reset Password', 'Reset password untuk user Dedi Kurniawan', '192.168.1.130'),
+(3, 'Input Minat', 'Menambahkan data minat untuk 10 siswa', '192.168.1.110');

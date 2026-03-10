@@ -1,0 +1,32 @@
+
+Analisis Kebutuhan Sistem
+Berdasarkan dokumen skripsi, sistem yang perlu dibuat adalah:
+
+Sistem penjurusan berbasis website untuk SMAN 1 Ciwaru yang menerapkan algoritma C4.5
+Pengguna sistem:
+
+Staff BK: dapat mengelola semua fitur dalam sistem
+Kepala Sekolah: dapat melihat laporan penjurusan dan data siswa yang sudah dijuruskan
+
+
+Fitur utama sistem:
+
+Input nilai siswa
+Informasi data siswa
+Visualisasi struktur pohon keputusan
+Klasifikasi penjurusan otomatis menggunakan algoritma C4.5
+
+
+Atribut yang digunakan:
+
+Nilai mata pelajaran (untuk IPA: Matematika, Fisika, Biologi, Kimia; untuk IPS: Sejarah, Geografi, Sosiologi, Ekonomi)
+Hasil test IQ
+Minat siswa
+
+
+Teknologi yang digunakan:
+
+Bahasa pemrograman: JavaScript, PHP
+Database: MySQL
+Metode pengembangan: Waterfall
+Proses data mining: Mengikuti CRISP-DM (6 fase)

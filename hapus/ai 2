@@ -1,0 +1,50 @@
+Berdasarkan dokumen yang Anda bagikan, saya akan fokus pada alur website penjurusan siswa yang menggunakan algoritma C4.5 (decision tree). Mari saya jelaskan apa yang perlu dibuat:
+
+## Alur Website Penjurusan Siswa menggunakan Algoritma C4.5
+
+### 1. Sistem Penjurusan untuk SMAN 1 Ciwaru
+Website ini ditujukan untuk penjurusan siswa kelas 10 di SMAN 1 Ciwaru, membantu menentukan apakah siswa masuk jurusan IPA, IPS, atau Gabungan.
+
+### 2. Pengguna (User)
+Website memiliki 2 tipe pengguna:
+- **Staff BK**: Bisa mengelola semua fitur sistem
+- **Kepala Sekolah**: Bisa melihat laporan penjurusan dan data siswa yang sudah dijuruskan
+
+### 3. Fitur Utama yang Perlu Dikembangkan
+- Input data siswa
+- Input nilai mata pelajaran (fokus pada nilai mata pelajaran IPA & IPS)
+- Input hasil test IQ
+- Input minat siswa
+- Pemrosesan data menggunakan algoritma C4.5
+- Visualisasi pohon keputusan (decision tree)
+- Hasil penjurusan otomatis
+- Laporan penjurusan
+
+### 4. Proses Penjurusan dengan Algoritma C4.5
+1. **Pengumpulan Data**: Data nilai siswa untuk mata pelajaran yang relevan, hasil test IQ, dan minat siswa
+2. **Persiapan Data**: Membersihkan dan mengorganisir data untuk pemrosesan
+3. **Pemodelan dengan C4.5**:
+   - Perhitungan Entropy dari dataset
+   - Perhitungan Information Gain untuk setiap atribut
+   - Pembentukan pohon keputusan berdasarkan Gain tertinggi
+   - Penentuan jurusan berdasarkan pohon keputusan
+
+### 5. Alur Kerja Website
+1. Login sesuai peran (Staff BK atau Kepsek)
+2. Menu pengelolaan data siswa (untuk Staff BK)
+3. Input data nilai, test IQ, dan minat siswa (untuk Staff BK)
+4. Proses penjurusan otomatis menggunakan algoritma C4.5
+5. Visualisasi pohon keputusan hasil algoritma
+6. Hasil penjurusan siswa
+7. Generasi laporan penjurusan
+8. Menu laporan dan hasil penjurusan (untuk Kepsek)
+
+### 6. Teknis Pengembangan
+- Bahasa pemrograman: JavaScript, PHP
+- Database: MySQL
+- Pengembangan menggunakan metode waterfall
+- Implementasi algoritma C4.5 untuk proses data mining
+
+Untuk implementasi algoritma C4.5, perlu mengembangkan fungsi yang dapat menghitung Entropy dan Information Gain, lalu membangun pohon keputusan secara otomatis berdasarkan hasil perhitungan tersebut. Website juga harus mampu memvisualisasikan pohon keputusan yang dihasilkan agar pengguna dapat memahami proses pengambilan keputusan.
+
+Apakah Anda membutuhkan detail lebih lanjut tentang implementasi algoritma C4.5 atau komponen tertentu dari website ini?

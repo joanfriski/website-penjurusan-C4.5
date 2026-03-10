@@ -1,0 +1,31 @@
+Rekomendasi Arsitektur Sistem
+Sistem yang sebaiknya dibuat memiliki arsitektur sebagai berikut:
+
+Frontend (Antarmuka pengguna):
+
+Halaman login untuk autentikasi Staff BK dan Kepala Sekolah
+Dashboard untuk masing-masing pengguna
+Form input nilai dan data siswa
+Halaman visualisasi pohon keputusan
+Halaman hasil penjurusan
+Halaman laporan dan statistik
+
+
+Backend (Logika bisnis):
+
+Modul autentikasi dan otorisasi
+Modul pengelolaan data siswa
+Modul implementasi algoritma C4.5
+Modul perhitungan entropy dan gain untuk pembentukan pohon keputusan
+Modul laporan dan visualisasi
+
+
+Database:
+
+Tabel pengguna (user)
+Tabel siswa
+Tabel nilai mata pelajaran
+Tabel hasil test IQ
+Tabel minat siswa
+Tabel hasil penjurusan
+Tabel log aktivitas
