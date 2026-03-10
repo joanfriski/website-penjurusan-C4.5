@@ -1,0 +1,234 @@
+<?php
+require_once '../../database/config.php';
+require_once '../include/header.php';
+require_once '../include/sidebar.php';
+
+// Set jumlah data per halaman
+$per_page = 25;
+
+// Ambil halaman saat ini
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page > 1) ? ($page * $per_page) - $per_page : 0;
+
+// Ambil keyword pencarian
+$search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+
+// Query untuk mendapatkan total data
+$query_count = "SELECT COUNT(DISTINCT s.id) as total 
+                FROM siswa s
+                JOIN kelas k ON s.kelas_id = k.id
+                LEFT JOIN nilai n ON s.id = n.siswa_id
+                LEFT JOIN mata_pelajaran mp ON n.mapel_id = mp.id
+                LEFT JOIN test_iq ti ON s.id = ti.siswa_id AND ti.id = (
+                    SELECT MAX(id) FROM test_iq WHERE siswa_id = s.id
+                )
+                LEFT JOIN minat_siswa ms ON s.id = ms.siswa_id
+                WHERE s.status = 'aktif'";
+
+if (!empty($search)) {
+    $query_count .= " AND (s.nis LIKE '%$search%' OR s.nama_lengkap LIKE '%$search%' OR k.nama_kelas LIKE '%$search%')";
+}
+
+$query_count .= " GROUP BY s.id
+                  HAVING COUNT(CASE WHEN mp.kategori = 'IPA' THEN n.nilai END) > 0 
+                  AND COUNT(CASE WHEN mp.kategori = 'IPS' THEN n.nilai END) > 0 
+                  AND COUNT(ti.id) > 0 
+                  AND COUNT(ms.id) > 0";
+
+$result_count = mysqli_query($conn, $query_count);
+$total_data = mysqli_num_rows($result_count);
+$total_pages = ceil($total_data / $per_page);
+
+// Query untuk mendapatkan siswa yang memiliki data lengkap dengan pagination
+$query = "SELECT s.id, s.nis, s.nama_lengkap, k.nama_kelas,
+          AVG(CASE WHEN mp.kategori = 'IPA' THEN n.nilai ELSE NULL END) AS nilai_ipa,
+          AVG(CASE WHEN mp.kategori = 'IPS' THEN n.nilai ELSE NULL END) AS nilai_ips,
+          ti.skor AS nilai_iq,
+          ti.kategori AS kategori_iq,
+          ms.minat
+          FROM siswa s
+          JOIN kelas k ON s.kelas_id = k.id
+          LEFT JOIN nilai n ON s.id = n.siswa_id
+          LEFT JOIN mata_pelajaran mp ON n.mapel_id = mp.id
+          LEFT JOIN test_iq ti ON s.id = ti.siswa_id AND ti.id = (
+              SELECT MAX(id) FROM test_iq WHERE siswa_id = s.id
+          )
+          LEFT JOIN minat_siswa ms ON s.id = ms.siswa_id
+          WHERE s.status = 'aktif'";
+
+if (!empty($search)) {
+    $query .= " AND (s.nis LIKE '%$search%' OR s.nama_lengkap LIKE '%$search%' OR k.nama_kelas LIKE '%$search%')";
+}
+
+$query .= " GROUP BY s.id, s.nis, s.nama_lengkap, k.nama_kelas, ti.skor, ti.kategori, ms.minat
+            HAVING nilai_ipa IS NOT NULL 
+            AND nilai_ips IS NOT NULL 
+            AND nilai_iq IS NOT NULL 
+            AND minat IS NOT NULL
+            ORDER BY k.nama_kelas, s.nama_lengkap
+            LIMIT $start, $per_page";
+
+$result = mysqli_query($conn, $query);
+?>
+
+
+<div id="sidebar">
+    <?php include '../include/sidebar.php'; ?>
+</div>
+<div id="content" class="content-wrapper">
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Data Siswa dengan Penilaian Lengkap</h3>
+                    </div>
+
+
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <!-- (Hapus tombol aksi hitung dan ekspor) -->
+                            </div>
+
+                            
+                            <div class="col-md-6">
+                                <!-- Search Form -->
+                                <form action="" method="GET" class="d-flex">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Cari NIS, Nama, atau Kelas..." 
+                                               name="search" value="<?= htmlspecialchars($search) ?>">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search"></i> Cari
+                                        </button>
+                                        <?php if (!empty($search)): ?>
+                                            <a href="index.php" class="btn btn-secondary">
+                                                <i class="fas fa-times"></i> Reset
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>NIS</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Kelas</th>
+                                        <th>Nilai IPA</th>
+                                        <th>Nilai IPS</th>
+                                        <th>Skor IQ</th>
+                                        <th>Kategori IQ</th>
+                                        <th>Minat</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $no = $start + 1;
+                                    while($row = mysqli_fetch_assoc($result)): 
+                                    ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= htmlspecialchars($row['nis']) ?></td>
+                                        <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>
+                                        <td><?= htmlspecialchars($row['nama_kelas']) ?></td>
+                                        <td><?= number_format($row['nilai_ipa'], 2) ?></td>
+                                        <td><?= number_format($row['nilai_ips'], 2) ?></td>
+                                        <td><?= $row['nilai_iq'] ?></td>
+                                        <td>
+                                            <span class="badge bg-<?= $row['kategori_iq'] == 'Tinggi' ? 'success' : ($row['kategori_iq'] == 'Sedang' ? 'warning' : 'danger') ?>">
+                                                <?= $row['kategori_iq'] ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-<?= $row['minat'] == 'IPA' ? 'primary' : 'info' ?>">
+                                                <?= $row['minat'] ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="detail.php?id=<?= $row['id'] ?>" class="btn btn-info btn-sm">
+                                                <i class="fas fa-eye"></i> Detail
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Pagination -->
+                        <?php if ($total_pages > 1): ?>
+                        <nav aria-label="Page navigation" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <?php if ($page > 1): ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?= $page-1 ?><?= !empty($search) ? '&search='.urlencode($search) : '' ?>">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php
+                                $start_page = max(1, $page - 2);
+                                $end_page = min($total_pages, $page + 2);
+                                if ($start_page > 1) {
+                                    echo '<li class="page-item"><a class="page-link" href="?page=1'.(!empty($search) ? '&search='.urlencode($search) : '').'">1</a></li>';
+                                    if ($start_page > 2) {
+                                        echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                                    }
+                                }
+                                for ($i = $start_page; $i <= $end_page; $i++) {
+                                    echo '<li class="page-item '.($i == $page ? 'active' : '').'">
+                                            <a class="page-link" href="?page='.$i.(!empty($search) ? '&search='.urlencode($search) : '').'">'.$i.'</a>
+                                          </li>';
+                                }
+                                if ($end_page < $total_pages) {
+                                    if ($end_page < $total_pages - 1) {
+                                        echo '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                                    }
+                                    echo '<li class="page-item"><a class="page-link" href="?page='.$total_pages.(!empty($search) ? '&search='.urlencode($search) : '').'">'.$total_pages.'</a></li>';
+                                }
+                                ?>
+                            </ul>
+                        </nav>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function hitungPenjurusan(siswaId) {
+    if (confirm('Apakah Anda yakin ingin melakukan perhitungan penjurusan untuk siswa ini?')) {
+        window.location.href = 'hitung.php?id=' + siswaId;
+    }
+}
+
+function hitungSemua() {
+    if (confirm('Apakah Anda yakin ingin melakukan perhitungan penjurusan untuk semua siswa?')) {
+        window.location.href = 'hitung_semua.php';
+    }
+}
+
+function exportData() {
+    window.location.href = 'export.php';
+}
+
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "searching": false,
+        "paging": false,
+        "info": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    });
+});
+</script>
+
+<?php require_once '../include/footer.php'; ?>
